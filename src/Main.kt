@@ -4,16 +4,16 @@ fun main() {
     val array = intArrayOf(1, 2, 3)
 
 
-    println(array.toList().permutations())
+    println(array.toMutableList().permutations())
 
 }
 
-fun <V> List<V>.permutations(): List<List<V>> {
+fun <V> MutableList<V>.permutations(): List<List<V>> {
     val result: MutableList<List<V>> = mutableListOf()
 
-    fun generate(k: Int, list: List<V>){
+    fun generate(k: Int, list: MutableList<V>){
         if (k == 1) {
-            result.add(list.toList())
+            result.add(list)
         }else {
             for (i in 0 until k){
                 generate(k - 1, list)
@@ -25,6 +25,6 @@ fun <V> List<V>.permutations(): List<List<V>> {
             }
         }
     }
-    generate(this.count(), this.toList())
+    generate(this.count(), this)
     return result
 }
